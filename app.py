@@ -314,9 +314,8 @@ def lucky_section(playlists):
             f"(mood {pick.get('mood', '?')})"
         )
 
-        history = st.session_state.history
-        history.append(pick)
-        st.session_state.history = history
+        # Store a fresh list so Streamlit notices the history update immediately.
+        st.session_state.history = [*st.session_state.history, dict(pick)]
 
 
 def stats_section(playlists):
